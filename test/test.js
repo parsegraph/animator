@@ -1,8 +1,12 @@
 var assert = require("assert");
-import todo from "../dist/animator";
+import Animator from "../dist/animator";
 
-describe("Package", function () {
+describe("Animator", function () {
   it("works", ()=>{
-    assert.equal(todo(), 42);
+    const a = new Animator(1000);
+    assert.ok(a);
+    assert.equal(a.animating(), false);
+    a.restart();
+    assert.equal(a.animating(), true);
   });
 });
