@@ -1,12 +1,12 @@
 const path = require("path");
 
 module.exports = {
-  entry: path.resolve(__dirname, "src/TODO-PACKAGE-NAME.ts"),
+  entry: path.resolve(__dirname, "src/animator.ts"),
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "TODO-PACKAGE-NAME.js",
+    filename: "animator.js",
     globalObject: "this",
-    library: "TODO-PACKAGE-NAME",
+    library: "animator",
     libraryTarget: "umd",
   },
   module: {
