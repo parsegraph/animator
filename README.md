@@ -1,24 +1,19 @@
-# microproject
+# Animator
 
-This is for Node projects:
+Animator manages a date-based percent value.
 
-## Setup
+    import Animator from 'parsegraph-animator';
 
-1. Pick a new package name.
+    const interval = 3000;
+    const anim = new Animator(interval);
+    anim.restart();
+    const animate = ()=>{
+      console.log(anim.t());
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
+    setTimeout(()=>anim.restart(), interval);
 
-2. Go to https://github.com/parsegraph/ and create a new repository using that name.
+Output:
 
-3. Clone latest microproject from https://github.com/parsegraph/microproject
-
-4. Run ./update-package-name.sh with your package name:
-
-<pre>
-  # Set the package name to test
-  ./update-package-name.sh test
-</pre>
-
-5. Commit (e.g. "Give package a name")
-
-6. Push the repository to Github.
-
-See DEVELOPING.md and DEPLOYING.md
+    anim.t() counts from 0 to 1 over 3s, repeating every 3s.

@@ -1,28 +1,28 @@
 export default class Animator {
-  _initialDuration:number;
-  _currentDateProvider:Function;
-  _animating:Date;
-  _finish:Date;
+  _initialDuration: number;
+  _currentDateProvider: ()=>Date;
+  _animating: Date;
+  _finish: Date;
 
-  constructor(initialDuration:number) {
+  constructor(initialDuration: number) {
     this._initialDuration = initialDuration;
 
-    this._currentDateProvider = ()=>{
+    this._currentDateProvider = () => {
       return new Date();
     };
   }
 
-  restart():void {
+  restart(): void {
     // console.log(new Error("Animation started"));
-    if (!this.animating()) {
-      this._animating = this.getCurrentDate();
-    }
+    this._animating = this.getCurrentDate();
     this._finish = new Date(this._animating);
-    this._finish.setMilliseconds(this._finish.getMilliseconds()+this.initialDuration());
+    this._finish.setMilliseconds(
+      this._finish.getMilliseconds() + this.initialDuration()
+    );
   }
 
   stop() {
-    console.log("Animation stopped");
+    //console.log("Animation stopped");
     this._animating = null;
   }
 
@@ -48,7 +48,9 @@ export default class Animator {
   }
 
   finish() {
-    this._animating.setMilliseconds(this._animating.getMilliseconds() - this.duration());
+    this._animating.setMilliseconds(
+      this._animating.getMilliseconds() - this.duration()
+    );
   }
 
   getStart() {
@@ -66,11 +68,11 @@ export default class Animator {
     return this._finish.getTime() - this._animating.getTime();
   }
 
-  setCurrentDateProvider(func:Function) {
+  setCurrentDateProvider(func: ()=>Date) {
     this._currentDateProvider = func;
   }
 
-  getCurrentDate():Date {
+  getCurrentDate(): Date {
     return this._currentDateProvider();
   }
 

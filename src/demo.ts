@@ -1,11 +1,30 @@
-import todo from ".";
+import Animator from ".";
 
 document.addEventListener("DOMContentLoaded", () => {
   const root = document.getElementById("demo");
   root.style.position = "relative";
 
+  const interval = 3000;
+  const anim = new Animator(interval - 1000);
+
+  const bar = document.createElement('div');
+  bar.style.position = "relative";
+  bar.style.backgroundColor = "white";
+  bar.style.border = "1px solid black";
+  bar.style.width = "100px";
+  bar.style.height = "16px";
+  bar.style.borderRadius = "3px";
+  bar.style.overflow = "hidden";
+
+  const barVal = document.createElement("div");
+  barVal.style.position = "absolute";
+  barVal.style.left = "0";
+  barVal.style.height = "100%";
+
+  bar.appendChild(barVal);
+
   const container = document.createElement("div");
-  container.innerHTML = `${todo()}`;
+  container.appendChild(bar);
   container.style.position = "absolute";
   container.style.left = "0px";
   container.style.top = "0px";
@@ -19,6 +38,14 @@ document.addEventListener("DOMContentLoaded", () => {
     container.style.color = `rgb(${rand()}, ${rand()}, ${rand()})`;
     container.style.left = `${Math.random() * root.clientWidth}px`;
     container.style.top = `${Math.random() * root.clientHeight}px`;
+    anim.restart();
+    barVal.style.backgroundColor = container.style.color;
+
+    const animate = ()=>{
+      barVal.style.width = Math.floor(anim.t()*100) + "%";
+      requestAnimationFrame(animate);
+    };
+    requestAnimationFrame(animate);
   };
 
   const dot = document.createElement("div");
@@ -42,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
     dotIndex = (dotIndex + 1) % dotState.length;
     dot.style.backgroundColor = dotState[dotIndex];
   };
-  const interval = 3000;
   const dotInterval = 500;
   root.addEventListener("click", () => {
     if (timer) {
