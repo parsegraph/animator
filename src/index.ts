@@ -1,6 +1,6 @@
 export default class Animator {
   _initialDuration: number;
-  _currentDateProvider: ()=>Date;
+  _currentDateProvider: () => Date;
   _animating: Date;
   _finish: Date;
 
@@ -22,7 +22,7 @@ export default class Animator {
   }
 
   stop() {
-    //console.log("Animation stopped");
+    // console.log("Animation stopped");
     this._animating = null;
   }
 
@@ -68,7 +68,7 @@ export default class Animator {
     return this._finish.getTime() - this._animating.getTime();
   }
 
-  setCurrentDateProvider(func: ()=>Date) {
+  setCurrentDateProvider(func: () => Date) {
     this._currentDateProvider = func;
   }
 

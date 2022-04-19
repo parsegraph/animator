@@ -1,4 +1,4 @@
-var assert = require("assert");
+const assert = require("assert");
 import Animator from "../src/index";
 
 describe("Animator", function () {

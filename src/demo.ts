@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const interval = 3000;
   const anim = new Animator(interval - 1000);
 
-  const bar = document.createElement('div');
+  const bar = document.createElement("div");
   bar.style.position = "relative";
   bar.style.backgroundColor = "white";
   bar.style.border = "1px solid black";
@@ -41,8 +41,8 @@ document.addEventListener("DOMContentLoaded", () => {
     anim.restart();
     barVal.style.backgroundColor = container.style.color;
 
-    const animate = ()=>{
-      barVal.style.width = Math.floor(anim.t()*100) + "%";
+    const animate = () => {
+      barVal.style.width = Math.floor(anim.t() * 100) + "%";
       requestAnimationFrame(animate);
     };
     requestAnimationFrame(animate);
